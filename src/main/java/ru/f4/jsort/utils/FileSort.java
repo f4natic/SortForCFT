@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 public final class FileSort {
 
-    private static int bufferSize = 10;
+    private static int buferSize = 10;
     private static long id;
     private static Path tempDir;
 
@@ -44,12 +44,12 @@ public final class FileSort {
     private static void readIntegerFile(BufferedReader reader, String order, String type) {
         BufferedWriter writer = new BufferedWriter(new FileWriter(new File("wrongData.txt"), true));
         String line = null;
-        Integer[] buffer = new Integer[bufferSize];
+        Integer[] buffer = new Integer[buferSize];
         int count = 0;
         while ((line = reader.readLine()) != null) {
             if (DataUtils.isInteger(line)) {
                 buffer[count] = Integer.parseInt(line);
-                if (count == (bufferSize - 1)) {
+                if (count == (buferSize - 1)) {
                     sortAndWrite(buffer, order, type);
                     mergeFile(order, type);
                     count = 0;
@@ -71,11 +71,11 @@ public final class FileSort {
     @SneakyThrows
     private static void readStringFile(BufferedReader reader, String order, String type) {
         String line = null;
-        String[] buffer = new String[bufferSize];
+        String[] buffer = new String[buferSize];
         int count = 0;
         while ((line = reader.readLine()) != null) {
             buffer[count] = line;
-            if (count == (bufferSize - 1)) {
+            if (count == (buferSize - 1)) {
                 sortAndWrite(buffer, order, type);
                 mergeFile(order, type);
                 count = 0;
@@ -126,7 +126,7 @@ public final class FileSort {
     // удаление null из буфера если он незаполнен
     public static Integer[] removeNull(Integer[] buffer) {
         int size = 0;
-        while (size < bufferSize) {
+        while (size < buferSize) {
             if (buffer[size] == null) {
                 break;
             }
@@ -139,7 +139,7 @@ public final class FileSort {
 
     public static String[] removeNull(String[] buffer) {
         int size = 0;
-        while (size < bufferSize) {
+        while (size < buferSize) {
             if (buffer[size] == null) {
                 break;
             }
